@@ -1,0 +1,4 @@
+0001-Skip-failing-test.patch
+0002-Skip-test-that-only-works-under-tox.patch
+0003-Add-mpl_image_compare-to-markers.patch
+0004-Skip-failing-tests.patch

@@ -1,0 +1,3 @@
+The test 'test_output_dir' is skipped because it only works under tox.
+However, the --test-tox mode for pybuild is currently broken due to
+this bug: https://bugs.launchpad.net/ubuntu/+source/python-pip/+bug/1743886
