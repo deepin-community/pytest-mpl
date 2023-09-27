@@ -1,0 +1,2 @@
+Test-Command: MPLBACKEND=agg pytest-3
+Depends: python3-pytest-mpl

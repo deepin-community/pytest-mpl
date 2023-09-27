@@ -1,0 +1,21 @@
+From: Leo Singer <leo.singer@ligo.org>
+Last-Update: 2018-01-25
+Subject: Skip test that only works under tox
+Forwarded: not-needed
+
+---
+ tests/test_pytest_mpl.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/tests/test_pytest_mpl.py b/tests/test_pytest_mpl.py
+index 58fb95c..62ebc9b 100644
+--- a/tests/test_pytest_mpl.py
++++ b/tests/test_pytest_mpl.py
+@@ -146,6 +146,7 @@ def test_output_dir():
+ """
+ 
+ 
++@pytest.mark.skip(reason='works only under tox')
+ def test_output_dir(tmpdir):
+     test_file = tmpdir.join('test.py').strpath
+     with open(test_file, 'w') as f:
