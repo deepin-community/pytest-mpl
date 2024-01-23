@@ -1,4 +1,7 @@
 0001-Skip-failing-test.patch
 0002-Skip-test-that-only-works-under-tox.patch
-0003-Add-mpl_image_compare-to-markers.patch
-0004-Skip-failing-tests.patch
+0003-Use-packaged-bootstrap.bundle.min.js.patch
+0004-Add-mpl_image_compare-to-markers.patch
+0005-Skip-failing-tests.patch
+0006-Use-packaged-bootstrap.min.css.patch
+0007-Ignore-deprecation-warnings-in-pytest.patch

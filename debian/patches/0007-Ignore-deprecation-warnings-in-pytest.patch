@@ -1,0 +1,21 @@
+From: Ole Streicher <olebole@debian.org>
+Date: Fri, 22 Dec 2023 15:35:06 +0100
+Subject: Ignore deprecation warnings in pytest
+
+Closes: #1058425
+---
+ setup.cfg | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/setup.cfg b/setup.cfg
+index 681aee4..01ad84c 100644
+--- a/setup.cfg
++++ b/setup.cfg
+@@ -48,6 +48,7 @@ markers =
+ 	hash: run test during hash comparison only mode.
+ filterwarnings = 
+ 	error
++	ignore::DeprecationWarning
+ 	ignore:distutils Version classes are deprecated
+ 	ignore:the imp module is deprecated in favour of importlib
+ 
