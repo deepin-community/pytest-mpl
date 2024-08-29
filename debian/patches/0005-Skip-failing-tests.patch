@@ -8,11 +8,9 @@ Forwarded: not-needed
  tests/test_pytest_mpl.py       | 22 ++++++++++------------
  2 files changed, 14 insertions(+), 12 deletions(-)
 
-diff --git a/tests/subtests/test_subtest.py b/tests/subtests/test_subtest.py
-index 4993fa9..3b6543c 100644
---- a/tests/subtests/test_subtest.py
-+++ b/tests/subtests/test_subtest.py
-@@ -170,6 +170,7 @@ def run_subtest(baseline_summary_name, tmp_path, args, summaries=None, xfail=Tru
+--- pytest-mpl.orig/tests/subtests/test_subtest.py
++++ pytest-mpl/tests/subtests/test_subtest.py
+@@ -169,6 +169,7 @@
          pytest.skip("Skipping testing, since `update_summary` is enabled.")
  
  
@@ -20,7 +18,7 @@ index 4993fa9..3b6543c 100644
  def test_default(tmp_path):
      run_subtest('test_default', tmp_path, [*IMAGE_COMPARISON_MODE])
  
-@@ -206,6 +207,7 @@ def test_html_hashes_only(tmp_path):
+@@ -205,6 +206,7 @@
      assert (tmp_path / 'results' / 'styles.css').exists()
  
  
@@ -28,7 +26,7 @@ index 4993fa9..3b6543c 100644
  def test_html_images_only(tmp_path):
      run_subtest('test_html_images_only', tmp_path, [*IMAGE_COMPARISON_MODE], summaries=['html'])
      assert (tmp_path / 'results' / 'fig_comparison.html').exists()
-@@ -230,6 +232,7 @@ def test_generate(tmp_path):
+@@ -229,6 +231,7 @@
                  xfail=False, generating_hashes=True)
  
  
@@ -36,7 +34,7 @@ index 4993fa9..3b6543c 100644
  def test_generate_images_only(tmp_path):
      # generating images; no testing
      run_subtest('test_generate_images_only', tmp_path,
-@@ -255,6 +258,7 @@ def test_html_generate(tmp_path):
+@@ -254,6 +257,7 @@
      assert (tmp_path / 'results' / 'fig_comparison.html').exists()
  
  
@@ -44,27 +42,25 @@ index 4993fa9..3b6543c 100644
  def test_html_generate_images_only(tmp_path):
      # generating images; no testing
      run_subtest('test_html_generate_images_only', tmp_path,
-diff --git a/tests/test_pytest_mpl.py b/tests/test_pytest_mpl.py
-index 62ebc9b..c602b38 100644
---- a/tests/test_pytest_mpl.py
-+++ b/tests/test_pytest_mpl.py
-@@ -302,6 +302,7 @@ def test_hash_fails():
+--- pytest-mpl.orig/tests/test_pytest_mpl.py
++++ pytest-mpl/tests/test_pytest_mpl.py
+@@ -302,6 +302,7 @@
  """
  
  
 +@pytest.mark.skip(reason='works only under tox')
- def test_hash_fails(tmpdir):
- 
-     test_file = tmpdir.join('test.py').strpath
-@@ -414,6 +415,7 @@ def test_hash_missing():
+ def test_hash_fails(tmp_path):
+     test_file = tmp_path / "test.py"
+     test_file.write_text(TEST_FAILING_HASH, encoding="ascii")
+@@ -413,6 +414,7 @@
  """
  
  
 +@pytest.mark.skip(reason='works only under tox')
- def test_hash_missing(tmpdir):
- 
-     test_file = tmpdir.join('test.py').strpath
-@@ -550,11 +552,7 @@ class TestClassWithTestCase(TestCase):
+ def test_hash_missing(tmp_path):
+     test_file = tmp_path / "test.py"
+     test_file.write_text(TEST_MISSING_HASH)
+@@ -543,11 +545,7 @@
  """
  
  
@@ -74,10 +70,10 @@ index 62ebc9b..c602b38 100644
 -    TEST_FAILING_UNITTEST_TESTCASE,
 -])
 +@pytest.mark.skip(reason='works only under tox')
- def test_class_fail(code, tmpdir):
+ def test_class_fail(code, tmp_path):
  
-     test_file = tmpdir.join('test.py').strpath
-@@ -570,7 +568,7 @@ def test_class_fail(code, tmpdir):
+     test_file = tmp_path / "test.py"
+@@ -563,7 +561,7 @@
      assert code == 0
  
  
@@ -86,7 +82,7 @@ index 62ebc9b..c602b38 100644
  def test_user_fail(pytester, runpytest_args):
      pytester.makepyfile(
          """
-@@ -585,7 +583,7 @@ def test_user_fail(pytester, runpytest_args):
+@@ -578,7 +576,7 @@
      result.stdout.fnmatch_lines("FAILED*Manually failed by user.*")
  
  
@@ -95,7 +91,7 @@ index 62ebc9b..c602b38 100644
  def test_user_skip(pytester, runpytest_args):
      pytester.makepyfile(
          """
-@@ -599,7 +597,7 @@ def test_user_skip(pytester, runpytest_args):
+@@ -592,7 +590,7 @@
      result.assert_outcomes(skipped=1)
  
  
@@ -104,7 +100,7 @@ index 62ebc9b..c602b38 100644
  def test_user_importorskip(pytester, runpytest_args):
      pytester.makepyfile(
          """
-@@ -613,7 +611,7 @@ def test_user_importorskip(pytester, runpytest_args):
+@@ -606,7 +604,7 @@
      result.assert_outcomes(skipped=1)
  
  
@@ -113,7 +109,7 @@ index 62ebc9b..c602b38 100644
  def test_user_xfail(pytester, runpytest_args):
      pytester.makepyfile(
          """
-@@ -627,7 +625,7 @@ def test_user_xfail(pytester, runpytest_args):
+@@ -620,7 +618,7 @@
      result.assert_outcomes(xfailed=1)
  
  
@@ -122,7 +118,7 @@ index 62ebc9b..c602b38 100644
  def test_user_exit_success(pytester, runpytest_args):
      pytester.makepyfile(
          """
-@@ -643,7 +641,7 @@ def test_user_exit_success(pytester, runpytest_args):
+@@ -636,7 +634,7 @@
      result.stdout.fnmatch_lines("*Exit*Manually exited by user.*")
  
  
@@ -131,7 +127,7 @@ index 62ebc9b..c602b38 100644
  def test_user_exit_failure(pytester, runpytest_args):
      pytester.makepyfile(
          """
-@@ -659,7 +657,7 @@ def test_user_exit_failure(pytester, runpytest_args):
+@@ -652,7 +650,7 @@
      result.stdout.fnmatch_lines("*Exit*Manually exited by user.*")
  
  

@@ -7,15 +7,23 @@ Forwarded: not-needed
  setup.cfg | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/setup.cfg b/setup.cfg
-index b952567..681aee4 100644
---- a/setup.cfg
-+++ b/setup.cfg
-@@ -43,6 +43,7 @@ test =
- [tool:pytest]
- testpaths = "tests"
- markers = 
+--- pytest-mpl.orig/tests/subtests/subtest/pytest.ini
++++ pytest-mpl/tests/subtests/subtest/pytest.ini
+@@ -1,5 +1,6 @@
+ [pytest]
+ markers =
++    mpl_image_compare
+     image: run test during image comparison only mode.
+     hash: run test during hash comparison only mode.
+ filterwarnings =
+--- pytest-mpl.orig/setup.cfg
++++ pytest-mpl/setup.cfg
+@@ -53,6 +53,8 @@
+ 	ignore:distutils Version classes are deprecated
+ 	ignore:the imp module is deprecated in favour of importlib
+ 	ignore:The NumPy module was reloaded
++markers =
 +	mpl_image_compare
- 	image: run test during image comparison only mode.
- 	hash: run test during hash comparison only mode.
- filterwarnings = 
+ 
+ [flake8]
+ max-line-length = 120

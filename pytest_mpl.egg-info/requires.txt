@@ -7,5 +7,11 @@ Pillow
 [:python_version < "3.8"]
 importlib_resources
 
+[docs]
+sphinx
+mpl_sphinx_theme>=3.6.0.dev0
+sphinx_design
+matplotlib==3.6
+
 [test]
 pytest-cov
