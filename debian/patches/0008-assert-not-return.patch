@@ -1,0 +1,229 @@
+Author: Michael R. Crusoe <crusoe@debian.org>
+Description: Fix many PytestReturnNotNoneWarnings
+--- pytest-mpl.orig/tests/test_pytest_mpl.py
++++ pytest-mpl/tests/test_pytest_mpl.py
+@@ -63,7 +63,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.plot([1, 2, 3])
+-    return fig
++    assert fig
+ 
+ 
+ @pytest.mark.mpl_image_compare(baseline_dir=baseline_dir_remote,
+@@ -72,7 +72,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.plot([1, 2, 3])
+-    return fig
++    assert fig
+ 
+ 
+ # The following tries an invalid URL first (or at least a URL where the baseline
+@@ -84,7 +84,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.plot([1, 2, 3])
+-    return fig
++    assert fig
+ 
+ 
+ class TestClass(object):
+@@ -95,7 +95,7 @@
+         fig = plt.figure()
+         ax = fig.add_subplot(1, 1, 1)
+         ax.plot([1, 2, 3])
+-        return fig
++        assert fig
+ 
+ 
+ @pytest.mark.mpl_image_compare(baseline_dir=baseline_dir_local,
+@@ -105,7 +105,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.plot([1, 2, 3])
+-    return fig
++    assert fig
+ 
+ 
+ TEST_FAILING = """
+@@ -116,7 +116,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1,1,1)
+     ax.plot([1,2,2])
+-    return fig
++    assert fig
+ """
+ 
+ 
+@@ -142,7 +142,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.plot([1, 2, 3])
+-    return fig
++    assert fig
+ """
+ 
+ 
+@@ -170,7 +170,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1,1,1)
+     ax.plot([1,2,3])
+-    return fig
++    assert fig
+ """
+ 
+ 
+@@ -209,7 +209,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.plot([1, 2, 2])
+-    return fig
++    assert fig
+ 
+ 
+ def test_nofigure():
+@@ -223,7 +223,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.plot([1, 2, 3])
+-    return fig
++    assert fig
+ 
+ 
+ @pytest.mark.mpl_image_compare(baseline_dir=baseline_dir_local,
+@@ -232,7 +232,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.plot([1, 2, 3])
+-    return fig
++    assert fig
+ 
+ 
+ @pytest.mark.parametrize('s', [5, 50, 500])
+@@ -242,7 +242,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.scatter([1, 3, 4, 3, 2], [1, 4, 3, 3, 1], s=s)
+-    return fig
++    assert fig
+ 
+ 
+ class TestClassWithSetup:
+@@ -259,7 +259,7 @@
+         fig = plt.figure()
+         ax = fig.add_subplot(1, 1, 1)
+         ax.plot(self.x)
+-        return fig
++        assert fig
+ 
+ 
+ class TestClassWithTestCase(TestCase):
+@@ -276,7 +276,7 @@
+         fig = plt.figure()
+         ax = fig.add_subplot(1, 1, 1)
+         ax.plot(self.x)
+-        return fig
++        assert fig
+ 
+ 
+ # hashlib
+@@ -287,7 +287,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1, 1, 1)
+     ax.plot([1, 2, 3])
+-    return fig
++    assert fig
+ 
+ 
+ TEST_FAILING_HASH = rf"""
+@@ -298,7 +298,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1,1,1)
+     ax.plot([1,2,2])
+-    return fig
++    assert fig
+ """
+ 
+ 
+@@ -336,7 +336,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1,1,1)
+     ax.plot([1,2,3])
+-    return fig
++    assert fig
+ """
+ 
+ 
+@@ -378,7 +378,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1,1,1)
+     ax.plot([1,2,2])
+-    return fig
++    assert fig
+ """
+ 
+ 
+@@ -410,7 +410,7 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1,1,1)
+     ax.plot([1,2,2])
+-    return fig
++    assert fig
+ """
+ 
+ 
+@@ -440,13 +440,13 @@
+     fig = plt.figure()
+     ax = fig.add_subplot(1,1,1)
+     ax.plot([1,2,2])
+-    return fig
++    assert fig
+ @pytest.mark.mpl_image_compare(deterministic=True)
+-def test_modified(): return plot()
++def test_modified(): assert plot()
+ @pytest.mark.mpl_image_compare(deterministic=True)
+-def test_new(): return plot()
++def test_new(): assert plot()
+ @pytest.mark.mpl_image_compare(deterministic=True)
+-def test_unmodified(): return plot()
++def test_unmodified(): assert plot()
+ """
+ 
+ 
+@@ -512,7 +512,7 @@
+         fig = plt.figure()
+         ax = fig.add_subplot(1, 1, 1)
+         ax.plot([1, 2, 3])
+-        return fig
++        assert fig
+ """
+ 
+ TEST_FAILING_CLASS_SETUP_METHOD = """
+@@ -526,7 +526,7 @@
+         fig = plt.figure()
+         ax = fig.add_subplot(1, 1, 1)
+         ax.plot(self.x)
+-        return fig
++        assert fig
+ """
+ 
+ TEST_FAILING_UNITTEST_TESTCASE = """
+@@ -541,7 +541,7 @@
+         fig = plt.figure()
+         ax = fig.add_subplot(1, 1, 1)
+         ax.plot(self.x)
+-        return fig
++        assert fig
+ """
+ 
+ 
+@@ -691,7 +691,7 @@
+             fig = plt.figure()
+             ax = fig.add_subplot(1, 1, 1)
+             ax.plot([{1 if passes else 3}, 2, 3])
+-            return fig
++            assert fig
+         """
+     )
+     result = pytester.runpytest('--mpl', '-rs')

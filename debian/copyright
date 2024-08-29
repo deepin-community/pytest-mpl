@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: pytest-mpl
-Source: https://github.com/astrofrog/pytest-mpl
+Source: https://github.com/matplotlib/pytest-mpl
 Upstream-Author: Thomas Robitaille <thomas.robitaille@gmail.com>
 
 Files: *

@@ -1,3 +1,17 @@
+pytest-mpl (0.17.0-1) unstable; urgency=medium
+
+  * Team upload.
+  * New upstream version. Closes: #1063963, #1066745
+  * Standards-Version: 4.6.2 (routine-update)
+  * Build-Depends: s/dh-python/dh-sequence-python3/ (routine-update)
+  * d/{control,copyright}: point to new upstream location
+  * Refreshed patches.
+  * d/control: remove references to python3-nose (Closes: #1018456)
+  * Added patch to fix many PytestReturnNotNoneWarnings
+  * d/rules: run the tests the same way upstream does
+
+ -- Michael R. Crusoe <crusoe@debian.org>  Thu, 25 Apr 2024 14:02:10 +0300
+
 pytest-mpl (0.16.1-2) unstable; urgency=medium
 
   * Team upload.

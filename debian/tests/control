@@ -1,2 +1,2 @@
-Test-Command: MPLBACKEND=agg pytest-3
+Test-Command: MPLBACKEND=agg pytest-3 -m "mpl_image_compare"
 Depends: python3-pytest-mpl

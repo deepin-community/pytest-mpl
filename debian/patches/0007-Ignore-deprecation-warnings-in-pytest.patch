@@ -7,15 +7,13 @@ Closes: #1058425
  setup.cfg | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/setup.cfg b/setup.cfg
-index 681aee4..01ad84c 100644
---- a/setup.cfg
-+++ b/setup.cfg
-@@ -48,6 +48,7 @@ markers =
- 	hash: run test during hash comparison only mode.
+--- pytest-mpl.orig/setup.cfg
++++ pytest-mpl/setup.cfg
+@@ -50,6 +50,7 @@
+ norecursedirs = tests/subtests/subtest
  filterwarnings = 
  	error
 +	ignore::DeprecationWarning
  	ignore:distutils Version classes are deprecated
  	ignore:the imp module is deprecated in favour of importlib
- 
+ 	ignore:The NumPy module was reloaded

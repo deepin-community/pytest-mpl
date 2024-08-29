@@ -5,3 +5,4 @@
 0005-Skip-failing-tests.patch
 0006-Use-packaged-bootstrap.min.css.patch
 0007-Ignore-deprecation-warnings-in-pytest.patch
+0008-assert-not-return.patch
